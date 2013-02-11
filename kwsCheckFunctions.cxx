@@ -81,12 +81,15 @@ bool Parser::CheckFunctions(const char* regEx,unsigned long maxLength)
     if(functionLine.find("#define") == std::string::npos
        && functionLine.find("_attribute_") == std::string::npos
        && functionLine.find(" operator") == std::string::npos
+       && functionLine.find("operator=") == std::string::npos
        && functionLine.find("friend ") == std::string::npos
        && functionName.find("if") == std::string::npos
        && functionName.find("while") == std::string::npos
        && functionName.find("for") == std::string::npos
        && functionName.find("switch") == std::string::npos
        && functionName.find("main") == std::string::npos
+       && functionName.find("try") == std::string::npos
+       && functionName.find("catch") == std::string::npos
        && functionName.find("~") == std::string::npos // skip destructor for now...
        )
       {

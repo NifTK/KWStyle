@@ -572,6 +572,25 @@ bool Parser::CheckIndent(IndentType itype,
             }
           }
 
+        // CMIC rule and policy exceptions
+        long int openingBracketPos = currentLine.find("{");
+        if (openingBracketPos != -1)
+        {
+          if (currentIndent == wantedIndent-size)
+            reportError = false;
+        }
+
+        long int closingBracketPos = currentLine.find("}");
+        if (closingBracketPos != -1)
+        {
+          if (currentIndent == wantedIndent-size)
+            reportError = false;
+        }
+
+        if (previousLine.find("if") != -1 || previousLine.find("else") != -1)
+          if (currentIndent == wantedIndent+size)
+            reportError = false;
+
         if(reportError)
           {
           Error error;
