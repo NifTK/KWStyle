@@ -128,7 +128,9 @@ bool Parser::CheckMemberFunctions(const char* regEx,unsigned long maxLength)
         && memberFunction != destructor
         )
         {
-        if(!regex.find(memberFunction))
+        std::string functionLine = this->GetLine(this->GetLineNumber(current,true)-1);
+        
+        if(!regex.find(memberFunction) && functionLine.find("virtual") == std::string::npos)
           {
           Error error;
           error.line = this->GetLineNumber(current,true);

@@ -83,6 +83,7 @@ bool Parser::CheckFunctions(const char* regEx,unsigned long maxLength)
        && functionLine.find(" operator") == std::string::npos
        && functionLine.find("operator=") == std::string::npos
        && functionLine.find("friend ") == std::string::npos
+       && functionLine.find("virtual") == std::string::npos
        && functionName.find("if") == std::string::npos
        && functionName.find("while") == std::string::npos
        && functionName.find("for") == std::string::npos
